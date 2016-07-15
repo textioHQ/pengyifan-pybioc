@@ -9,7 +9,6 @@ __author__ = 'Yifan Peng'
 import time
 
 import lxml.etree as ET
-from operator import attrgetter
 from lxml.etree import tostring
 
 
@@ -372,7 +371,8 @@ class BioCCollection:
         :type file: str
         """
         f = open(file, 'w')
-        f.write(self.tobioc())
+        to_bioc = self.tobioc().decode(self.encoding)
+        f.write(to_bioc)
         f.close()
 
     def totree(self):
